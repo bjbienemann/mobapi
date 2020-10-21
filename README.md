@@ -48,7 +48,7 @@ docker-compose down -v
 ```
 
 ## Testes
-Seguindo boas práticas os testes de integração não são exetudados em tempo de build, segue o comando para execução:
+Seguindo boas práticas os testes de integração não são execudados em tempo de build, segue o comando para execução:
 ```
 mvnw verify
 ```
