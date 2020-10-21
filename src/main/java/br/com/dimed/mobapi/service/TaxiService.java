@@ -33,6 +33,7 @@ import br.com.dimed.mobapi.properties.ApiProperties;
 public class TaxiService {
 	
 	private static final char SEPARATOR = '#';
+	private static final String PASTA = "data";
 	private static final String TAXI_TXT = "taxi.txt";
 
 	@Autowired
@@ -42,7 +43,7 @@ public class TaxiService {
 	
 	@PostConstruct
 	public void carregar() {
-		Path path = Paths.get(apiProperties.getHome(), TAXI_TXT);
+		Path path = Paths.get(apiProperties.getHome(), PASTA, TAXI_TXT);
 		try (var reader = new FileReader(path.toFile(), StandardCharsets.UTF_8)) {
 			taxis = new CsvToBeanBuilder<TaxiDto>(reader)
 					.withSeparator(SEPARATOR)
@@ -73,7 +74,7 @@ public class TaxiService {
 	}
 	
 	private void salvar() {
-		Path path = Paths.get(apiProperties.getHome(), TAXI_TXT);
+		Path path = Paths.get(apiProperties.getHome(), PASTA, TAXI_TXT);
 		try (var writer = new OutputStreamWriter(new FileOutputStream(path.toFile()), StandardCharsets.UTF_8)) {
 			StatefulBeanToCsv<TaxiDto> beanToCsv = new StatefulBeanToCsvBuilder<TaxiDto>(writer)
 				.withSeparator(SEPARATOR)

@@ -4,7 +4,8 @@ ENV API_HOME /usr/local/api
 ENV PATH $API_HOME:$PATH
 WORKDIR $API_HOME
 
-COPY taxi.txt ./taxi.txt
+RUN mkdir data
+COPY taxi.txt ./data/taxi.txt
 
 ADD target/mobapi*.jar ./api.jar
 

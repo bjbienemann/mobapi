@@ -25,4 +25,4 @@ services:
         links: 
             - "db:PSQL"
         volumes: 
-            - "api_data:/usr/local/api"
+            - "api_data:/usr/local/api/data"

@@ -2,14 +2,13 @@
 Avaliação técnica para desenvolvedor backend
 
 ## Requisitos para rodar (run) em docker
-* [Instalar docker e docker-compose](https://hub.docker.com/search?q=&type=edition&offering=community)
+[Com docker e docker-compose instalados](https://hub.docker.com/search?q=&type=edition&offering=community)
 
-* Fazer um pull para baixar a imagem docker do hub.
+Fazer um pull para baixar a imagem docker do hub:
 ```
 docker pull bienemann/mobapi:latest
 ```
-* Rodar os containers
-Obs: Para executar o compose sem fazer o build local é de fundamental importância o passo anterio para fazer o download da imagem construida.
+Para executar sem fazer a constrição(build) local da imagem docker é de fundamental importância o passo anterio para fazer o download da imagem no docker hub, segue o comando para rodar o ambiente local:
 ```
 docker-compose up
 ```
@@ -29,16 +28,17 @@ Segue as collections do Postman utilizadas
 * [java 11+](https://adoptopenjdk.net/)
 * [maven 3.6.3+](https://maven.apache.org/download.cgi)
 
-#### Construir a API
+#### Para construir
+Segue o comando para construir o projeto da API com Spring Boot:
 ```
 mvn package -DskipTests
 ```
-#### Criar/atualizar as imagens e rodar os containers
+Após empacotar o artefado jar da API, segue o comando para criar/atualizar uma nova imagem docker:
 ```
 docker-compose up --build -d
 ```
 
-#### Para remover os containers
+#### Para remover
 ```
 docker-compose down
 ```
@@ -48,7 +48,7 @@ docker-compose down -v
 ```
 
 ## Testes
-Seguindo boas práticas os testes de integração não são exetudados em tempo de build, segue o comando para execução.
+Seguindo boas práticas os testes de integração não são exetudados em tempo de build, segue o comando para execução:
 ```
 mvnw verify
 ```
