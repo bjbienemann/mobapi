@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="mobapi">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="onibus_linha">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="155" y="133"/>
+	<column name="id" not-null="true">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="codigo" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="onibus_linha_pk" type="pk-constr" table="public.onibus_linha">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="onibus_itinerario">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="573" y="208"/>
+	<column name="id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="ordem" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="latitude" not-null="true">
+		<type name="decimal" length="0"/>
+	</column>
+	<column name="longitude" not-null="true">
+		<type name="decimal" length="0"/>
+	</column>
+	<constraint name="onibus_itineario_pk" type="pk-constr" table="public.onibus_itinerario">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_onibus_linha" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="onibus_linha_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="onibus_linha_has_many_onibus_itinerario" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 src-table="public.onibus_linha"
+	 dst-table="public.onibus_itinerario"
+	 src-required="true" dst-required="false"/>
+
+</dbmodel>

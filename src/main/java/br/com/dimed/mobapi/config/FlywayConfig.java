@@ -1,0 +1,15 @@
+package br.com.dimed.mobapi.config;
+
+import org.springframework.boot.autoconfigure.flyway.FlywayConfigurationCustomizer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class FlywayConfig {
+	
+	@Bean
+    public FlywayConfigurationCustomizer flywayConfigurationCustomizer(IntegracaoCallback integracaoCallback) {
+        return configuration -> configuration.callbacks(integracaoCallback);
+    }
+	
+}

@@ -1,0 +1,7 @@
+______  ___       ______  _______ ________ ________
+___   |/  /______ ___  /_ ___    |___  __ \____  _/
+__  /|_/ / _  __ \__  __ \__  /| |__  /_/ / __  /  
+_  /  / /  / /_/ /_  /_/ /_  ___ |_  ____/ __/ /   
+/_/  /_/   \____/ /_.___/ /_/  |_|/_/      /___/   
+${AnsiColor.GREEN}:: MobAPI ::${AnsiColor.DEFAULT}                   (v${api.version}) 
+${AnsiColor.GREEN}:: Spring Boot ::${AnsiColor.DEFAULT}             ${spring-boot.formatted-version}
