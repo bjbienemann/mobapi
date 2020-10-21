@@ -2,7 +2,7 @@
 Avaliação técnica para desenvolvedor backend
 
 ## Requisitos para rodar (run) em docker
-[Com docker e docker-compose instalados](https://hub.docker.com/search?q=&type=edition&offering=community)
+[Com o docker e docker-compose instalados](https://hub.docker.com/search?q=&type=edition&offering=community)
 
 Fazer um pull para baixar a imagem docker do hub:
 ```
