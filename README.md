@@ -33,7 +33,7 @@ Segue o comando para construir o projeto da API com Spring Boot:
 ```
 mvn package -DskipTests
 ```
-Após empacotar o artefado jar da API, segue o comando para criar/atualizar uma nova imagem docker:
+Após empacotar o artefado jar da API, segue o comando para criar ou atualizar uma nova imagem e rodar os contêineres em docker:
 ```
 docker-compose up --build -d
 ```
