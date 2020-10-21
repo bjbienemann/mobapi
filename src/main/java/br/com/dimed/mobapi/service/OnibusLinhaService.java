@@ -1,6 +1,5 @@
 package br.com.dimed.mobapi.service;
 
-import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
@@ -30,10 +29,8 @@ public class OnibusLinhaService {
 	@Autowired
 	private OnibusLinhaMapper onibusLinhaMapper;
 	
-	public List<OnibusLinhaDto> filtrarLinahasPorRaio(RaioItinerarioFilter filter) {
-		var linhas = onibusJdbcTemplate.findByRaio(filter);
-		
-		return linhas;
+	public Page<OnibusLinhaDto> filtrarLinahasPorRaio(RaioItinerarioFilter filter, Pageable pageable) {
+		return onibusJdbcTemplate.findByRaio(filter, pageable);
 	}
 	
 	public Page<OnibusLinhaDto> filtrar(OnibusLinhaFilter filter, Pageable pageable) {
@@ -70,5 +67,12 @@ public class OnibusLinhaService {
 
 	public void deletar(Long id) {
 		onibusLinhaRepository.deleteById(id);
+	}
+
+	public OnibusLinhaDto buscarPorId(Long id) {
+		var entity = onibusLinhaRepository.findById(id)
+				.orElseThrow(() ->  new NenhumRegistroEncotradoException());
+		
+		return onibusLinhaMapper.toDto(entity);
 	}
 }

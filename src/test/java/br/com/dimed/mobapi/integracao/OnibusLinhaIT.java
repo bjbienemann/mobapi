@@ -14,7 +14,7 @@ import br.com.dimed.mobapi.model.dto.OnibusLinhaDto;
 import br.com.dimed.mobapi.service.OnibusLinhaService;
 
 @SpringBootTest
-public class OnibusLinhaTests {
+public class OnibusLinhaIT {
 	
 	@Autowired
 	private OnibusLinhaService onibusLinhaService;

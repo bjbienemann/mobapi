@@ -56,4 +56,11 @@ public class OnibusItinerarioService {
 	public void deletar(Long id) {
 		onibusItinerarioRepository.deleteById(id);
 	}
+
+	public OnibusItinerarioDto buscarPorId(Long id) {
+		var entity = onibusItinerarioRepository.findById(id)
+				.orElseThrow(() ->  new NenhumRegistroEncotradoException());
+		
+		return onibusItinerarioMapper.toDto(entity);
+	}
 }

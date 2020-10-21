@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +37,12 @@ public class OnibusItinerarioController {
 		return onibusItinerarioService.filtrar(filter, pageable);
 	}
 	
+	@GetMapping("/{id}")
+	@Operation(summary = "Buscar um itinerário por ID")
+	public OnibusItinerarioDto buscarPorId(@PathVariable Long id) {
+		return onibusItinerarioService.buscarPorId(id);
+	}
+	
 	@PostMapping
 	@Operation(summary = "Inserir um novo itinerário")
 	public ResponseEntity<OnibusItinerarioDto> inserir(@Valid @RequestBody OnibusItinerarioDto dto) {
@@ -46,7 +53,7 @@ public class OnibusItinerarioController {
 	
 	@PutMapping("/{id}")
 	@Operation(summary = "Atualizar um itinerário por ID")
-	public ResponseEntity<OnibusItinerarioDto> atualizar(Long id, @Valid @RequestBody OnibusItinerarioDto dto) {
+	public ResponseEntity<OnibusItinerarioDto> atualizar(@PathVariable Long id, @Valid @RequestBody OnibusItinerarioDto dto) {
 		var onibusItinerario = onibusItinerarioService.salvar(id, dto);
 		
 		return ResponseEntity.ok(onibusItinerario);
@@ -55,7 +62,7 @@ public class OnibusItinerarioController {
 	@DeleteMapping("/{id}")
 	@Operation(summary = "Deletar um itinerário por ID")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletar(Long id) {
+	public void deletar(@PathVariable Long id) {
 		onibusItinerarioService.deletar(id);
 	}
 }

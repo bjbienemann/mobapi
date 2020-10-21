@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "7b322584-2f43-4930-9112-e99a6c266923",
+		"name": "taxi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/taxis/pontos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"taxis",
+						"pontos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "porNome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/taxis/pontos?nome=SUL",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"taxis",
+						"pontos"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "SUL"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "salvar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nomePonto\": \"PONTO-ZONA-SUL-2\",\n    \"latitude\": -80.12373379817800000,\n    \"longitude\": -151.22266028234100000,\n    \"dataHora\": \"2020-02-11T16:14:34.828\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/taxis/pontos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"taxis",
+						"pontos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

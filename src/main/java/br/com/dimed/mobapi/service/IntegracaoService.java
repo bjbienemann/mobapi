@@ -62,8 +62,14 @@ public class IntegracaoService {
 
 			for (int i = 0; i < linhasOnibus.size(); i++) {
 				List<OnibusItinerarioEntity> entities = importarItinerariosPorLinha(linhasOnibus.get(i));
-
+				
 				onibusItinerarioRepository.saveAll(entities);
+				
+				try {
+					Thread.sleep(100l);
+				} catch (InterruptedException e) {
+					log.error("Erro thread sleep", e);
+				}
 			}
 
 			stopTimeMillis = System.currentTimeMillis();

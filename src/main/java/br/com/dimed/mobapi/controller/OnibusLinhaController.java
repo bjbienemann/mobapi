@@ -1,7 +1,5 @@
 package br.com.dimed.mobapi.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +38,12 @@ public class OnibusLinhaController {
 		return onibusLinhaService.filtrar(filter, pageable);
 	}
 	
+	@GetMapping("/{id}")
+	@Operation(summary = "Buscar uma linha por ID")
+	public OnibusLinhaDto buscarPorId(@PathVariable Long id) {
+		return onibusLinhaService.buscarPorId(id);
+	}
+	
 	@PostMapping
 	@Operation(summary = "Inserir uma nova linha")
 	public ResponseEntity<OnibusLinhaDto> inserir(@Valid @RequestBody OnibusLinhaDto dto) {
@@ -49,7 +54,7 @@ public class OnibusLinhaController {
 	
 	@PutMapping("/{id}")
 	@Operation(summary = "Atualizar uma linha por ID")
-	public ResponseEntity<OnibusLinhaDto> atualizar(Long id, @Valid @RequestBody OnibusLinhaDto dto) {
+	public ResponseEntity<OnibusLinhaDto> atualizar(@PathVariable Long id, @Valid @RequestBody OnibusLinhaDto dto) {
 		var onibusLinha = onibusLinhaService.salvar(id, dto);
 		
 		return ResponseEntity.ok(onibusLinha);
@@ -58,16 +63,16 @@ public class OnibusLinhaController {
 	@DeleteMapping("/{id}")
 	@Operation(summary = "Deletar uma linha por ID")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletar(Long id) {
+	public void deletar(@PathVariable Long id) {
 		onibusLinhaService.deletar(id);
 	}
 	
 	@GetMapping("/por/raio")
 	@Operation(summary = "Buscar linhas de ônibus por raio.", description = "passando uma" + 
 			"latitude, longitude e um raio em KM, trazer todas as linhas dentro do raio informado.")
-	public ResponseEntity<List<OnibusLinhaDto>> buscarLinhaPorRaio(@Valid RaioItinerarioFilter filter) {
-		var linhas = onibusLinhaService.filtrarLinahasPorRaio(filter);
+	public Page<OnibusLinhaDto> buscarLinhaPorRaio(@Valid RaioItinerarioFilter filter, Pageable pageable) {
+		var linhas = onibusLinhaService.filtrarLinahasPorRaio(filter, pageable);
 		
-		return ResponseEntity.ok(linhas);
+		return linhas;
 	}
 }

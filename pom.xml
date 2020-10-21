@@ -27,24 +27,30 @@
 	</properties>
 
 	<dependencies>
+		<!-- Principal dependência par uso dos controladores web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- Tem o objetivo de abstrair a comunicação com o banco de dados e a exposição de seviços rest -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- Responsável por validar a obrigatoriedade dos objetos através de anotaçoes -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		
+		<!-- Responsável pelo schema evolution -->
+		<!-- com isso possíbilidar as migrations e versionamento do banco de dados -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 
+		<!-- Responsável por gerar o doc-api com OpenAPI e Swagger-UI -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
@@ -56,39 +62,44 @@
 			<version>${org.springdoc.version}</version>
 		</dependency>
 
+		<!-- Um mapper faz a conversão entre objetos, preservar -->
+		<!-- o cotrado (payload e não expor diretamente as entites do banco de dados-->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
 		</dependency>
 		
+		<!-- Utilizada para leitura e escrita do arquivo de taxi -->
 		<dependency>
 		    <groupId>com.opencsv</groupId>
 		    <artifactId>opencsv</artifactId>
 		    <version>${com.opencsv.version}</version>
 		</dependency>
 		
+		<!-- Responsável pelo recarremento (hot relaod) em tempo de desenvolvimento -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- driver de conexão com o banco -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
+
+		<!-- Responsável por gerar as auto configurações de metadados -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- Dependecias para execução dos testes de unitários e integração -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -112,6 +123,7 @@
 					<target>${java.version}</target>
 					<annotationProcessorPaths>
 						<path>
+							<!-- O mapstruct gera as classe das intefaces mapper ao conpilar -->
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
 							<version>${org.mapstruct.version}</version>
@@ -123,6 +135,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
+					<!-- Essa execution é resposável por gerar o arquivo properties de build -->
 					<execution>
 						<id>build-info</id>
 						<goals>
@@ -130,6 +143,11 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<!-- Plugin resposável por ignorar os testes de integração em momento de construção -->
+			<!-- para executar os teste de integração (IT) é utilizado o goal verify -->
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
