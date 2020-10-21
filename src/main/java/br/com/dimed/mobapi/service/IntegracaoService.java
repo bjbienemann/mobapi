@@ -66,6 +66,7 @@ public class IntegracaoService {
 				onibusItinerarioRepository.saveAll(entities);
 				
 				try {
+					// Sleep para evidar o afogamento nas consultas no webservices, evitar o 403 Forbidem.
 					Thread.sleep(100l);
 				} catch (InterruptedException e) {
 					log.error("Erro thread sleep", e);

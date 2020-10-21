@@ -1,14 +1,15 @@
 ## MobAPI
 Avaliação técnica para desenvolvedor backend
 
-### Requisitos para rodar (run) em docker
+## Requisitos para rodar (run) em docker
 * [Instalar docker e docker-compose](https://hub.docker.com/search?q=&type=edition&offering=community)
 
 * Fazer um pull para baixar a imagem docker do hub.
 ```
 docker pull bienemann/mobapi:latest
 ```
-* criar/atualizar as imagens e rodar os containers
+* Rodar os containers
+Obs: Para executar o compose sem fazer o build local é de fundamental importância o passo anterio para fazer o download da imagem construida.
 ```
 docker-compose up
 ```
@@ -24,25 +25,35 @@ Segue as collections do Postman utilizadas
 * [onibus_linhas.postman_collection.json](postman/onibus_linhas.postman_collection.json)
 * [taxi.postman_collection.json](postman/taxi.postman_collection.json)
 
-### Requisitos para construir (build)
+## Requisitos para construir (build)
 * [java 11+](https://adoptopenjdk.net/)
 * [maven 3.6.3+](https://maven.apache.org/download.cgi)
 
-### Construir a API
+#### Construir a API
 ```
 mvn package -DskipTests
 ```
-* criar/atualizar as imagens e rodar os containers
+#### Criar/atualizar as imagens e rodar os containers
 ```
 docker-compose up --build -d
 ```
 
-### Teste de integração
-Para fazer o teste de integração o objetivo(goal) verify 
+#### Para remover os containers
+```
+docker-compose down
+```
+Add o "-v" caso tenha a necessidade de remover os volumes, removendo os volumes são eliminados os dados de bando e arquivo taxi.txt
+```
+docker-compose down -v
+```
+
+## Testes
+Seguindo boas práticas os testes de integração não são exetudados em tempo de build, segue o comando para execução.
 ```
 mvnw verify
 ```
-### Doc API
+## Doc API
+A documentação pode ser acessada através da URN "/swagger-ui" precedida pela URL do servidor, segue o exemplo:
 ```
 http://localhost:8080/swagger-ui
 ```
