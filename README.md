@@ -57,3 +57,5 @@ A documentação pode ser acessada através da URN "/swagger-ui" precedida pela 
 ```
 http://localhost:8080/swagger-ui
 ```
+## Sobre as bibliotecas
+Segue os comentário no [pom.xml](pom.xml)
